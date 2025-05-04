@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mobile Testing" parallel="tests" thread-count="3">
+
+    <listeners>
+        <listener class-name="common.testng.MobileTestNgCustomListener"/>
+    </listeners>
+    <test name="Android Test" enabled="true">
+        <parameter name="platform" value="android"/>
+
+        <classes>
+            <class name="auto.mobile.formcli.specs.HomeScreenTest"/>
+            <class name="auto.mobile.formcli.specs.PersonalTabTest"/>
+            <class name="auto.mobile.formcli.specs.PaymentTabTest"/>
+            <class name="auto.mobile.formcli.specs.SummaryTabTest"/>
+
+        </classes>
+
+    </test> <!-- Test -->
+
+    <test name="IOS Test" enabled="true">
+        <parameter name="platform" value="ios"/>
+        <classes>
+            <class name="auto.mobile.formcli.specs.HomeScreenTest"/>
+            <class name="auto.mobile.formcli.specs.PersonalTabTest"/>
+            <class name="auto.mobile.formcli.specs.PaymentTabTest"/>
+            <class name="auto.mobile.formcli.specs.SummaryTabTest"/>
+
+
+        </classes>
+
+    </test>
+
+</suite> <!-- Suite -->
