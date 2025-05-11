@@ -1,0 +1,34 @@
+{
+  "android": {
+    "platformName": "android",
+    "platformVersion": "7.0",
+    "app": "./apps/formscli_android.apk",
+    "deviceName": "android",
+    "noSign": true
+  },
+  "iOS": {
+
+  },
+  "ios": {
+    "appium:platformName": "ios",
+    "appium:app": "./apps/formscli_ios.zip",
+    "appium:automationName": "XCUITest",
+    "appium:maxTypingFrequency": 10
+  },
+
+  "ATDServiceHost":"127.0.0.1",
+  "ATDServicePort":"3000",
+  "serverConfig": {
+    "server": {
+      "use-plugins": [
+        "device-farm"
+      ],
+      "plugin": {
+        "device-farm": {
+          "platform": "ios"
+        }
+      }
+    }
+  }
+
+}

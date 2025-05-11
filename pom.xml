@@ -18,6 +18,7 @@
         <log4j.version>2.24.3</log4j.version>
         <aspectj.version>1.9.20.1</aspectj.version>
         <jodatime.version>2.14.0</jodatime.version>
+        <appium.distribution.version>14.0.4</appium.distribution.version>
     </properties>
 
     <dependencyManagement>
@@ -73,11 +74,11 @@
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>${appium.java.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.appium</groupId>-->
+<!--            <artifactId>java-client</artifactId>-->
+<!--            <version>${appium.java.version}</version>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
@@ -95,6 +96,11 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>${jodatime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.saikrishna321</groupId>
+            <artifactId>AppiumTestDistribution</artifactId>
+            <version>${appium.distribution.version}</version>
         </dependency>
     </dependencies>
     <build>

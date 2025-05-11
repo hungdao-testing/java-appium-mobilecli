@@ -1,0 +1,40 @@
+{
+  "android": {
+    "platformName": "android",
+    "platformVersion": "7.0",
+    "app": "src/test/resources/mobile/apps/formscli_android.apk",
+    "deviceName": "android",
+    "noSign": true
+  },
+
+  "iOS": {
+    "platformName": "iOS",
+    "app": {
+      "simulator": "src/test/resources/mobile/apps/formscli_ios.zip"
+    },
+    "wdaLaunchTimeout": 80000,
+    "wdaConnectionTimeout": 80000,
+    "preventWDAAttachments": true,
+    "clearSystemFiles": true,
+    "shouldUseSingletonTestManager": false,
+    "simpleIsVisibleCheck": true,
+    "maxTypingFrequency": 10
+  },
+  "hostMachines": [
+    {
+      "machineIP": "127.0.0.1",
+      "simulators": [
+        {
+          "deviceName": "iPhone 15 Pro",
+          "OS": "17.5"
+        },
+        {
+          "deviceName": "iPhone 15",
+          "OS": "17.5"
+        }
+      ]
+    }
+  ],
+  "ATDServiceHost":"127.0.0.1",
+  "ATDServicePort":"3000"
+}
