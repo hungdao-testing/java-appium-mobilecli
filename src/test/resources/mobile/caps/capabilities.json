@@ -1,40 +1,45 @@
 {
   "android": {
-    "platformName": "android",
-    "platformVersion": "7.0",
-    "app": "src/test/resources/mobile/apps/formscli_android.apk",
-    "deviceName": "android",
-    "noSign": true
+    "appium:platformName": "android",
+    "appium:platformVersion": "15.0",
+    "automationName": "UiAutomator2",
+    "appium:newCommandTimeout": 300,
+    "appium:noReset": false,
+    "app": "/Users/hungminh/hung/programming/automation/java-appium-formclis/src/test/resources/mobile/apps/formscli_android.apk",
+    "appium:maxTypingFrequency": 30
   },
-
   "iOS": {
-    "platformName": "iOS",
-    "app": {
-      "simulator": "src/test/resources/mobile/apps/formscli_ios.zip"
-    },
-    "wdaLaunchTimeout": 80000,
-    "wdaConnectionTimeout": 80000,
-    "preventWDAAttachments": true,
-    "clearSystemFiles": true,
-    "shouldUseSingletonTestManager": false,
-    "simpleIsVisibleCheck": true,
-    "maxTypingFrequency": 10
   },
-  "hostMachines": [
-    {
-      "machineIP": "127.0.0.1",
-      "simulators": [
-        {
-          "deviceName": "iPhone 15 Pro",
-          "OS": "17.5"
-        },
-        {
-          "deviceName": "iPhone 15",
-          "OS": "17.5"
+  "ios": {
+    "appium:platformName": "ios",
+    "appium:app": "/Users/hungminh/hung/programming/automation/java-appium-formclis/src/test/resources/mobile/apps/formscli_ios.zip",
+    "appium:automationName": "XCUITest",
+    "appium:newCommandTimeout": 300,
+    "appium:noReset": false,
+    "appium:maxTypingFrequency": 30,
+    "df:udids": "A16F7F75-FBE3-4C01-8E69-FFDDC5B4A585, CAAB1A78-3B85-4B84-B35C-702A21D330C3",
+    "appium:wdaLaunchTimeout": 80000,
+    "appium:wdaConnectionTimeout": 80000,
+    "appium:preventWDAAttachments": true,
+    "appium:usePrebuiltWDA": true,
+    "appium:clearSystemFiles": true,
+    "appium:shouldUseSingletonTestManager": false,
+    "appium:simpleIsVisibleCheck": true
+  },
+  "serverConfig": {
+    "server": {
+      "port": 4723,
+      "use-plugins": [
+        "device-farm",
+        "element-wait"
+      ],
+      "plugin": {
+        "device-farm": {
+          "platform": "android",
+          "skipChromeDownload": true
         }
-      ]
+      }
     }
-  ],
-  "ATDServiceHost":"127.0.0.1",
-  "ATDServicePort":"3000"
+  },
+  "basePath": "/"
 }

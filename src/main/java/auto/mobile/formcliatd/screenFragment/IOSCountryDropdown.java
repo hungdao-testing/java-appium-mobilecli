@@ -1,4 +1,4 @@
-package auto.mobile.formcli.screenFragment;
+package auto.mobile.formcliatd.screenFragment;
 
 import auto.mobile.formcliatd.constants.AppConstant;
 import auto.mobile.formcliatd.constants.PointWay;

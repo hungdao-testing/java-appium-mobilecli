@@ -1,6 +1,7 @@
 package auto.mobile.formcliatd;
 
 import com.appium.manager.ATDRunner;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -12,10 +13,9 @@ public class Runner {
         ATDRunner parallelThread = new ATDRunner();
         List<String> tests = new ArrayList<>();
         tests.add("HomeScreenTest");
-        tests.add("HomeScreenOneTest");
-        tests.add("HomeScreenTwoTest");
+//        tests.add("PersonalTabTest");
 
-        parallelThread.runner("auto.mobile.formcliatd.specs",tests);
-
+        boolean runner = parallelThread.runner("auto.mobile.formcliatd.specs", tests);
+        Assert.assertFalse(runner);
     }
 }
