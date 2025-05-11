@@ -43,3 +43,6 @@ allure-report/
 
 ### Logs
 logs/*.log
+
+### output
+test-output/
