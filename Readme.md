@@ -41,3 +41,5 @@ The script is run for `android` and `ios` platforms (2 simluator/emulator at the
 At root folder, running command: `mvn clean test -Dsuite="mobile-testng"`
 
 ### Phase 2: Test distribution (TBD)
+- Please switch to branch `test_distribution`
+So far implement (basically) for iOS simulators. Related to Android emulators, I am facing issues at https://github.com/AppiumTestDistribution/AppiumTestDistribution/issues/1222
