@@ -1,13 +1,14 @@
 {
   "android": {
     "appium:platformName": "android",
-    "appium:platformVersion": "15.0",
-    "automationName": "UiAutomator2",
+    "automationName": "uiautomator2",
     "appium:newCommandTimeout": 300,
     "appium:noReset": false,
-    "app": "/Users/hungminh/hung/programming/automation/java-appium-formclis/src/test/resources/mobile/apps/formscli_android.apk",
-    "appium:maxTypingFrequency": 30
+    "appium:app": "/Users/hungminh/hung/programming/automation/java-appium-formclis/src/test/resources/mobile/apps/formscli_android.apk",
+    "appium:maxTypingFrequency": 30,
+    "appium:deviceName": "Pixel 7a API"
   },
+
   "iOS": {
   },
   "ios": {
@@ -24,22 +25,48 @@
     "appium:usePrebuiltWDA": true,
     "appium:clearSystemFiles": true,
     "appium:shouldUseSingletonTestManager": false,
-    "appium:simpleIsVisibleCheck": true
+    "appium:simpleIsVisibleCheck": true,
+    "df:deviceAvailabilityTimeout": 20000
   },
+  "hostMachines": [
+    {
+      "machineIP": "127.0.0.1"
+    }
+  ],
   "serverConfig": {
     "server": {
-      "port": 4723,
+      "port": 31337,
       "use-plugins": [
         "device-farm",
-        "element-wait"
+        "element-wait",
+        "relaxed-caps"
       ],
       "plugin": {
         "device-farm": {
           "platform": "android",
-          "skipChromeDownload": true
+          "skipChromeDownload": true,
+          "iosDeviceType": "both",
+          "androidDeviceType": "both",
+          "maxSessions": 2,
+          "liveStreaming": true,
+          "emulators": [
+            {
+              "avdName": "Pixel_7a_API",
+              "launchTimeout": 120000
+            }
+          ],
+          "deviceAvailabilityTimeoutMs": 300000,
+          "deviceAvailabilityQueryIntervalMs": 10000,
+          "sendNodeDevicesToHubIntervalMs": 30000,
+          "checkStaleDevicesIntervalMs": 30000,
+          "checkBlockedDevicesIntervalMs": 30000,
+          "newCommandTimeoutSec": 60,
+          "bindHostOrIp": "127.0.0.0",
+          "bootedSimulators": true
         }
       }
     }
   },
-  "basePath": "/"
+  "ATDServiceHost": "127.0.0.1",
+  "ATDServicePort": "3000"
 }
