@@ -1,4 +1,4 @@
-package auto.mobile.formcli.config;
+package auto.mobile.formcli.constants;
 
 public enum MobileCapEnum {
 

@@ -2,9 +2,8 @@ package auto.mobile.formcli.specs;
 
 import auto.mobile.formcli.config.AppiumDesiredCapsBuilder;
 import auto.mobile.formcli.config.AppiumDriverManager;
-import auto.mobile.formcli.config.MobileCapPojo;
+import auto.mobile.formcli.pojo.config.MobileCapPojo;
 import auto.mobile.formcli.utils.JsonConverter;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
@@ -14,33 +13,35 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 
 public class MobileBaseTest {
 
-    private static final String APPIUM_PLUGIN_ELEMENT_WAIT = "element-wait";
+
     private static final ThreadLocal<AppiumDriverLocalService> appiumServiceThread =
             new ThreadLocal<>();
     private final Logger logger = LogManager.getLogger();
 
     @BeforeTest(description = "Start appium server")
     @Parameters({"platform"})
-    public void startAppiumServer(String platform) {
-        logger.info("Start appium server in platform {}", platform);
-        setAppiumService(platform);
-        appiumServiceThread.get().start();
+    public void startAppiumServer(String platform) throws URISyntaxException, MalformedURLException {
+        logger.info("Start appium server with defined configuration");
+        setAppiumLocalService(platform);
     }
 
     @AfterTest(description = "Stop appium driver and server")
     public void stopAppiumServer() {
         AppiumDriverManager.clearAppiumThread();
+        appiumServiceThread.get().stop();
     }
 
     @BeforeClass(description = "Setup mobile driver")
     @Parameters({"platform"})
     public void setUpMobileDriver(String platform) {
         logger.info("Setup appium driver for platform {}", platform);
-        AppiumDriver driver = new AppiumDriver(appiumServiceThread.get(), setUpCapability(platform));
-        AppiumDriverManager.setAppiumDriver(driver);
+        AppiumDriverManager.setAppiumDriver(appiumServiceThread.get(), platform, setUpCapability(platform));
+
     }
 
     @AfterClass(description = "Shutdown mobile driver")
@@ -52,13 +53,13 @@ public class MobileBaseTest {
         }
     }
 
-    private void setAppiumService(String platform) {
+    private void setAppiumLocalService(String platform) {
         appiumServiceThread.set(
                 new AppiumServiceBuilder()
                         .withCapabilities(setUpCapability(platform))
-                        .withArgument(GeneralServerFlag.USE_PLUGINS, APPIUM_PLUGIN_ELEMENT_WAIT)
+                        .withIPAddress("127.0.0.1")
+                        .usingPort(5400)
                         .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
-                        .usingAnyFreePort()
                         .withLogFile(new File("logs/appium.log"))
                         .build());
     }

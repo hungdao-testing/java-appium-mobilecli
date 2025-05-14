@@ -1,5 +1,7 @@
 package auto.mobile.formcli.config;
 
+import auto.mobile.formcli.constants.MobileCapEnum;
+import auto.mobile.formcli.pojo.config.MobileCapPojo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;

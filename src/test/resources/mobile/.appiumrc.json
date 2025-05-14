@@ -1,0 +1,31 @@
+{
+  "server": {
+    "address": "127.0.0.1",
+    "port": 5400,
+    "relaxed-security": true,
+    "keep-alive-timeout": 800,
+    "use-plugins": [
+      "element-wait",
+      "device-farm"
+    ],
+    "plugin": {
+      "device-farm": {
+        "platform": "both",
+        "skipChromeDownload": true,
+        "iosDeviceType": "both",
+        "androidDeviceType": "both",
+        "maxSessions": 3,
+        "liveStreaming": true,
+        "bootedSimulators": true
+      }
+    },
+    "driver": {
+      "uiautomator2": {
+        "appium:systemPort": 8201
+      },
+      "xcuitest": {
+        "webdriveragent-port": 8200
+      }
+    }
+  }
+}
