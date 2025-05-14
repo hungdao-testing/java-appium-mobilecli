@@ -32,13 +32,15 @@ The list of test cases are placed in `xml` file under `test/source/*.xml`.
 
 ## 3. Execution
 
-The script is executed in
+#### Phase 1.1: Run test-suite without starting appium server first.
 
-### Phase 1: In-parallel between `test` tag in `xml` file
-
-The script is run for `android` and `ios` platforms (2 simluator/emulator at the same time).
+The script is run for `android` and `ios` platforms (2 simulator/emulator at the same time).
 
 At root folder, running command: `mvn clean test -Dsuite="mobile-testng"`
+
+#### Phase 1.2: Run test-suite with `appium-device-farm` => all test execution live-streaming to device-farm dashboard
+- Please switch to branch `config/appium_config_file`
+
 
 ### Phase 2: Test distribution (TBD)
 - Please switch to branch `test_distribution`
