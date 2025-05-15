@@ -11,20 +11,14 @@
     "plugin": {
       "device-farm": {
         "platform": "both",
+        "removeDevicesFromDatabaseBeforeRunningThePlugin": true,
+        "bindHostOrIp": "127.0.0.0",
         "skipChromeDownload": true,
         "iosDeviceType": "both",
         "androidDeviceType": "both",
         "maxSessions": 3,
         "liveStreaming": true,
         "bootedSimulators": true
-      }
-    },
-    "driver": {
-      "uiautomator2": {
-        "appium:systemPort": 8201
-      },
-      "xcuitest": {
-        "webdriveragent-port": 8200
       }
     }
   }

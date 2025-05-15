@@ -2,6 +2,7 @@ package auto.mobile.formcli.specs;
 
 import auto.mobile.formcli.config.AppiumDesiredCapsBuilder;
 import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.ConfigurationManager;
 import auto.mobile.formcli.pojo.config.MobileCapPojo;
 import auto.mobile.formcli.utils.JsonConverter;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -27,7 +28,8 @@ public class MobileBaseTest {
     @Parameters({"platform"})
     public void startAppiumServer(String platform) throws URISyntaxException, MalformedURLException {
         logger.info("Start appium server with defined configuration");
-        setAppiumLocalService(platform);
+        setAppiumLocalService();
+//        appiumServiceThread.get().start();
     }
 
     @AfterTest(description = "Stop appium driver and server")
@@ -53,12 +55,11 @@ public class MobileBaseTest {
         }
     }
 
-    private void setAppiumLocalService(String platform) {
+    private void setAppiumLocalService() {
         appiumServiceThread.set(
                 new AppiumServiceBuilder()
-                        .withCapabilities(setUpCapability(platform))
-                        .withIPAddress("127.0.0.1")
-                        .usingPort(5400)
+                        .withIPAddress(ConfigurationManager.getHost())
+                        .usingPort(ConfigurationManager.getPort())
                         .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
                         .withLogFile(new File("logs/appium.log"))
                         .build());
