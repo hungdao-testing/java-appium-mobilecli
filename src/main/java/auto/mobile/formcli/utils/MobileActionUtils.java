@@ -1,7 +1,7 @@
 package auto.mobile.formcli.utils;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import auto.mobile.formcli.constants.PointWay;
 import auto.mobile.formcli.constants.ScrollDirection;
 import auto.mobile.formcli.constants.TestConstant;
@@ -37,7 +37,7 @@ public class MobileActionUtils {
         sequenceAction.addAction(
                 touchInput.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y));
         sequenceAction.addAction(touchInput.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        AppiumDriverManager.getAppiumDriver().perform(List.of(sequenceAction));
+        FwDriverManager.getAppiumDriver().perform(List.of(sequenceAction));
     }
 
     /**
@@ -63,7 +63,7 @@ public class MobileActionUtils {
                         endPoint.getX(),
                         endPoint.getY()));
         scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        AppiumDriverManager.getAppiumDriver().perform(List.of(scroll));
+        FwDriverManager.getAppiumDriver().perform(List.of(scroll));
     }
 
     /**

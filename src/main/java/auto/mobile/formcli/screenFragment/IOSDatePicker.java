@@ -1,7 +1,7 @@
 package auto.mobile.formcli.screenFragment;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import auto.mobile.formcli.constants.AppConstant;
 import auto.mobile.formcli.constants.PointWay;
 import auto.mobile.formcli.constants.ScrollDirection;
@@ -78,7 +78,7 @@ public class IOSDatePicker extends MobileBaseScreen {
 
     @Step(value = "submit setup dob")
     public void submitSettingDob() {
-        AppiumDriverManager.getAppiumDriver().findElement(BY_CONFIRM_BTN).click();
+        FwDriverManager.getAppiumDriver().findElement(BY_CONFIRM_BTN).click();
     }
 
 

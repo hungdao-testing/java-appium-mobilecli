@@ -1,7 +1,7 @@
 package auto.mobile.formcli.specs;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import auto.mobile.formcli.pojo.DobPojo;
 import auto.mobile.formcli.screenObject.HomeScreen;
 import auto.mobile.formcli.screenObject.checkout.PaymentTab;
@@ -30,11 +30,11 @@ public class PaymentTabTest extends MobileBaseTest {
         Allure.step(
                 "Setup personal info",
                 () -> {
-                    HomeScreen homeScreen = new HomeScreen(AppiumDriverManager.getAppiumDriver());
+                    HomeScreen homeScreen = new HomeScreen(FwDriverManager.getAppiumDriver());
                     Assert.assertTrue(homeScreen.isAt());
                     homeScreen.openCheckout();
 
-                    PersonalTab personalTab = new PersonalTab(AppiumDriverManager.getAppiumDriver());
+                    PersonalTab personalTab = new PersonalTab(FwDriverManager.getAppiumDriver());
                     personalTab.setFullName(fullName);
                     personalTab.setAddress(address);
                     personalTab.setCity(city);
@@ -45,7 +45,7 @@ public class PaymentTabTest extends MobileBaseTest {
                     personalTab.clickNext();
                 });
 
-        paymentTab = new PaymentTab(AppiumDriverManager.getAppiumDriver());
+        paymentTab = new PaymentTab(FwDriverManager.getAppiumDriver());
         Assert.assertTrue(paymentTab.isAt());
     }
 

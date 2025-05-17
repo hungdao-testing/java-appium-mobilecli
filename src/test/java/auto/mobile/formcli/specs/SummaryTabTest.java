@@ -1,7 +1,7 @@
 package auto.mobile.formcli.specs;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import auto.mobile.formcli.pojo.DobPojo;
 import auto.mobile.formcli.pojo.PaymentModel;
 import auto.mobile.formcli.pojo.PersonalModel;
@@ -36,11 +36,11 @@ public class SummaryTabTest extends MobileBaseTest {
                                     .dob(DobPojo.builder().day("26").month("5").year("2024").build())
                                     .build();
 
-                    HomeScreen homeScreen = new HomeScreen(AppiumDriverManager.getAppiumDriver());
+                    HomeScreen homeScreen = new HomeScreen(FwDriverManager.getAppiumDriver());
                     Assert.assertTrue(homeScreen.isAt());
                     homeScreen.openCheckout();
 
-                    PersonalTab personalTab = new PersonalTab(AppiumDriverManager.getAppiumDriver());
+                    PersonalTab personalTab = new PersonalTab(FwDriverManager.getAppiumDriver());
                     personalTab.setFullName(personalModel.getFullName());
                     personalTab.setAddress(personalModel.getAddress());
                     personalTab.setCity(personalModel.getCity());
@@ -62,7 +62,7 @@ public class SummaryTabTest extends MobileBaseTest {
                                     .saveCard(true)
                                     .build();
 
-                    PaymentTab paymentTab = new PaymentTab(AppiumDriverManager.getAppiumDriver());
+                    PaymentTab paymentTab = new PaymentTab(FwDriverManager.getAppiumDriver());
                     paymentTab.setCardNumber(paymentModel.getCardName());
                     paymentTab.setExpiredDate(paymentModel.getExpiredDate());
                     paymentTab.setCvv(paymentModel.getCvv());
@@ -70,7 +70,7 @@ public class SummaryTabTest extends MobileBaseTest {
                     paymentTab.submit();
                 });
 
-        summaryTab = new SummaryTab(AppiumDriverManager.getAppiumDriver(), personalModel, paymentModel);
+        summaryTab = new SummaryTab(FwDriverManager.getAppiumDriver(), personalModel, paymentModel);
         Assert.assertTrue(summaryTab.isAt());
     }
 
@@ -149,7 +149,7 @@ public class SummaryTabTest extends MobileBaseTest {
         Allure.step(
                 "Edit  personal info",
                 () -> {
-                    PersonalTab personalTab = new PersonalTab(AppiumDriverManager.getAppiumDriver());
+                    PersonalTab personalTab = new PersonalTab(FwDriverManager.getAppiumDriver());
                     personalTab.setFullName(personalModel.getFullName());
                     personalTab.setAddress(personalModel.getAddress());
                     personalTab.setCity(personalModel.getCity());
@@ -163,7 +163,7 @@ public class SummaryTabTest extends MobileBaseTest {
         Allure.step(
                 "Edit payment info",
                 () -> {
-                    PaymentTab paymentTab = new PaymentTab(AppiumDriverManager.getAppiumDriver());
+                    PaymentTab paymentTab = new PaymentTab(FwDriverManager.getAppiumDriver());
                     paymentTab.setCardNumber(paymentModel.getCardName());
                     paymentTab.setExpiredDate(paymentModel.getExpiredDate());
                     paymentTab.setCvv(paymentModel.getCvv());
@@ -171,7 +171,7 @@ public class SummaryTabTest extends MobileBaseTest {
                     paymentTab.submit();
                 });
 
-        summaryTab = new SummaryTab(AppiumDriverManager.getAppiumDriver(), personalModel, paymentModel);
+        summaryTab = new SummaryTab(FwDriverManager.getAppiumDriver(), personalModel, paymentModel);
         Assert.assertTrue(summaryTab.isAt());
         Allure.step(
                 "Assert personal card load correct information",

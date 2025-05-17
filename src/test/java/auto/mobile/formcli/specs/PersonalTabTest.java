@@ -1,7 +1,7 @@
 package auto.mobile.formcli.specs;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import auto.mobile.formcli.pojo.DobPojo;
 import auto.mobile.formcli.screenObject.HomeScreen;
 import auto.mobile.formcli.screenObject.checkout.PersonalTab;
@@ -24,11 +24,11 @@ public class PersonalTabTest extends MobileBaseTest {
     @BeforeClass(description = "Click on [Checkout] to load Personal Tab")
     public void setUpHomeScreen() {
 
-        HomeScreen homeScreen = new HomeScreen(AppiumDriverManager.getAppiumDriver());
+        HomeScreen homeScreen = new HomeScreen(FwDriverManager.getAppiumDriver());
         Assert.assertTrue(homeScreen.isAt());
         Allure.step("Open Personal tab", homeScreen::openCheckout);
 
-        personalTab = new PersonalTab(AppiumDriverManager.getAppiumDriver());
+        personalTab = new PersonalTab(FwDriverManager.getAppiumDriver());
         Allure.step(
                 "Verify user could open Personal Tab",
                 () -> {

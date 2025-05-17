@@ -1,7 +1,7 @@
 package auto.mobile.formcli.specs;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import auto.mobile.formcli.screenObject.HomeScreen;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Feature;
@@ -16,7 +16,7 @@ public class HomeScreenTest extends MobileBaseTest {
 
     @BeforeClass(description = "Setup home screen information")
     public void setUpHomeScreen() {
-        homeScreen = new HomeScreen(AppiumDriverManager.getAppiumDriver());
+        homeScreen = new HomeScreen(FwDriverManager.getAppiumDriver());
     }
 
     @Test(description = "Verify user could go to Checkout screen")

@@ -1,4 +1,4 @@
-package auto.mobile.formcli.config;
+package auto.mobile.formcli.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

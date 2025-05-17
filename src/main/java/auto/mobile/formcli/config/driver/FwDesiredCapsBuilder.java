@@ -1,10 +1,12 @@
-package auto.mobile.formcli.config;
+package auto.mobile.formcli.config.driver;
 
+import auto.mobile.formcli.constants.MobileCapEnum;
+import auto.mobile.formcli.pojo.MobileCapPojo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class AppiumDesiredCapsBuilder {
+public class FwDesiredCapsBuilder {
     private static final Logger logger = LogManager.getLogger();
 
     public static DesiredCapabilities setMobileCaps(MobileCapPojo mobileCaps) {

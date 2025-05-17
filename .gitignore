@@ -1,4 +1,4 @@
-target/
+src/main/java/auto/mobile/formcli/config/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

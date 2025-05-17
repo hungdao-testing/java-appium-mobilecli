@@ -1,10 +1,11 @@
 package auto.mobile.formcli.specs;
 
-import auto.mobile.formcli.config.AppiumDesiredCapsBuilder;
-import auto.mobile.formcli.config.AppiumDriverManager;
-import auto.mobile.formcli.config.MobileCapPojo;
+
+import auto.mobile.formcli.config.driver.FwDesiredCapsBuilder;
+import auto.mobile.formcli.config.driver.FwDriverManager;
+import auto.mobile.formcli.constants.MobilePlatform;
+import auto.mobile.formcli.pojo.MobileCapPojo;
 import auto.mobile.formcli.utils.JsonConverter;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
@@ -32,23 +33,24 @@ public class MobileBaseTest {
 
     @AfterTest(description = "Stop appium driver and server")
     public void stopAppiumServer() {
-        AppiumDriverManager.clearAppiumThread();
+        FwDriverManager.clearAppiumThread();
     }
 
     @BeforeClass(description = "Setup mobile driver")
     @Parameters({"platform"})
     public void setUpMobileDriver(String platform) {
         logger.info("Setup appium driver for platform {}", platform);
-        AppiumDriver driver = new AppiumDriver(appiumServiceThread.get(), setUpCapability(platform));
-        AppiumDriverManager.setAppiumDriver(driver);
+//        AppiumDriver driver = new AppiumDriver(appiumServiceThread.get(), setUpCapability(platform));
+//        FwDriverManager.setAppiumDriver(driver);
+        FwDriverManager.setAppiumDriver(appiumServiceThread.get().getUrl().toString(), MobilePlatform.IOS, setUpCapability(platform));
     }
 
     @AfterClass(description = "Shutdown mobile driver")
     @Parameters({"platform"})
     public void tearDownMobileDriver(String platform) {
         logger.info("Shutdown appium driver");
-        if (AppiumDriverManager.getAppiumDriver() != null) {
-            AppiumDriverManager.getAppiumDriver().quit();
+        if (FwDriverManager.getAppiumDriver() != null) {
+            FwDriverManager.getAppiumDriver().quit();
         }
     }
 
@@ -59,6 +61,7 @@ public class MobileBaseTest {
                         .withArgument(GeneralServerFlag.USE_PLUGINS, APPIUM_PLUGIN_ELEMENT_WAIT)
                         .withArgument(GeneralServerFlag.LOG_LEVEL, "info")
                         .usingAnyFreePort()
+                        .withIPAddress("127.0.0.1")
                         .withLogFile(new File("logs/appium.log"))
                         .build());
     }
@@ -68,6 +71,6 @@ public class MobileBaseTest {
                 JsonConverter.parseJsonAs(
                         String.format("src/test/resources/mobile/caps/%s.cap.json", platform),
                         MobileCapPojo.class);
-        return AppiumDesiredCapsBuilder.setMobileCaps(mobileCaps);
+        return FwDesiredCapsBuilder.setMobileCaps(mobileCaps);
     }
 }

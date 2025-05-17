@@ -1,7 +1,7 @@
 package common.testng;
 
 
-import auto.mobile.formcli.config.AppiumDriverManager;
+import auto.mobile.formcli.config.driver.FwDriverManager;
 import io.qameta.allure.Allure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +32,7 @@ public class MobileTestNgCustomListener implements ITestListener {
     logger.error("Test Failed: {}", result.getName());
     logger.error("Exception: ", result.getThrowable());
 
-    byte[] screenshot = ((TakesScreenshot) AppiumDriverManager.getAppiumDriver()).getScreenshotAs(OutputType.BYTES);
+    byte[] screenshot = ((TakesScreenshot) FwDriverManager.getAppiumDriver()).getScreenshotAs(OutputType.BYTES);
     Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
   }
 
