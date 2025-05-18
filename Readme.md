@@ -32,7 +32,9 @@ The list of test cases are placed in `xml` file under `test/source/*.xml`.
 
 ## 3. Execution
 
-#### Phase 1.1: Run test-suite at local machine.
+### Phase 1: Run test-suite connecting to local-appium server
+
+#### Phase 1.1: Programmatically start appium server through `MobileBaseTest`
 
 The script is run for `android` and `ios` platforms (2 simulator/emulator at the same time).
 
