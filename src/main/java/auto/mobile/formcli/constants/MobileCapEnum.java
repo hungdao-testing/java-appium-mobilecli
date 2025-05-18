@@ -1,5 +1,8 @@
 package auto.mobile.formcli.constants;
 
+import lombok.Getter;
+
+@Getter
 public enum MobileCapEnum {
 
     PLATFORM_NAME("appium:platformName"),
@@ -7,7 +10,9 @@ public enum MobileCapEnum {
     AUTOMATION_NAME("appium:automationName"),
     DEVICE_NAME("appium:deviceName"),
     APP_FILE("appium:app"),
-    MAX_TYPING("appium:maxTypingFrequency");
+    MAX_TYPING("appium:maxTypingFrequency"),
+    ANDROID_SYSTEM_PORT("systemPort"),
+    IOS_WDA_PORT("wdaLocalPort");
 
     private final String capName;
 
@@ -15,7 +20,4 @@ public enum MobileCapEnum {
         this.capName = capName;
     }
 
-    public String getCapName() {
-        return this.capName;
-    }
 }

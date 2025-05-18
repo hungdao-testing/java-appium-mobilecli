@@ -5,8 +5,12 @@ public enum MobilePlatform {
     IOS("ios"),
     TV("tv");
 
-    private  String mobilePlatform;
+    private final String mobilePlatform;
     MobilePlatform(String mobilePlatform){
         this.mobilePlatform = mobilePlatform;
+    }
+
+    public String getValue() {
+        return this.mobilePlatform.trim().toLowerCase();
     }
 }

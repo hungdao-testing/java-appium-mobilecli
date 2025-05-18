@@ -3,10 +3,10 @@ package auto.mobile.formcli.config.driver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,5 +33,12 @@ public class IOSDriverImpl implements IMobileDriver {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public AppiumDriver createDriver(AppiumDriverLocalService service, DesiredCapabilities capabilities) {
+        logger.info("Create IOS driver with local service and caps");
+        return new IOSDriver(service, capabilities);
+
     }
 }

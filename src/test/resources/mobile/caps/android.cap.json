@@ -7,4 +7,5 @@
   "appium:noReset": false,
   "appium:app": "src/test/resources/mobile/apps/formscli_android.apk",
   "appium:maxTypingFrequency": 30
+
 }

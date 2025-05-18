@@ -2,6 +2,7 @@ package auto.mobile.formcli.config.driver;
 
 import auto.mobile.formcli.constants.MobilePlatform;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public final class FwDriverManager {
@@ -42,6 +43,22 @@ public final class FwDriverManager {
             driver = new AndroidDriverImpl().createDriver(remoteUrl, capabilities);
         } else if (MobilePlatform.IOS == platform) {
             driver = new IOSDriverImpl().createDriver(remoteUrl, capabilities);
+        }
+
+        setAppiumDriver(driver);
+    }
+
+    /**
+     * Set up appium driver along with defined appium local service
+     */
+    public static void setAppiumDriver(AppiumDriverLocalService service, MobilePlatform platform,
+                                       DesiredCapabilities capabilities) {
+        AppiumDriver driver = null;
+
+        if (MobilePlatform.ANDROID == platform) {
+            driver = new AndroidDriverImpl().createDriver(service, capabilities);
+        } else if (MobilePlatform.IOS == platform) {
+            driver = new IOSDriverImpl().createDriver(service, capabilities);
         }
 
         setAppiumDriver(driver);

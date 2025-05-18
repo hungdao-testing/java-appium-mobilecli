@@ -19,6 +19,11 @@ public class FwDesiredCapsBuilder {
         dc.setCapability("appium:noReset", false);
         dc.setCapability(MobileCapEnum.APP_FILE.getCapName(), mobileCaps.getPathToApp());
         dc.setCapability(MobileCapEnum.MAX_TYPING.getCapName(), mobileCaps.getTypingFrequency());
+//        if (mobileCaps.getPlatformName().equalsIgnoreCase("android")) {
+//            dc.setCapability(String.valueOf(MobileCapEnum.ANDROID_SYSTEM_PORT.getCapName()), mobileCaps.getSystemPort());
+//        } else if (mobileCaps.getPlatformName().equalsIgnoreCase("ios")) {
+//            dc.setCapability(String.valueOf(MobileCapEnum.IOS_WDA_PORT.getCapName()), mobileCaps.getWdaLocalPort());
+//        }
 
         logger.info("Set mobile capabilities {} ", mobileCaps.toString());
         return dc;

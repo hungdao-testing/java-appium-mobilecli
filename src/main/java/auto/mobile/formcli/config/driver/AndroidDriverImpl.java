@@ -3,6 +3,7 @@ package auto.mobile.formcli.config.driver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -32,5 +33,13 @@ public class AndroidDriverImpl implements IMobileDriver {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public AppiumDriver createDriver(AppiumDriverLocalService service, DesiredCapabilities capabilities) {
+        UiAutomator2Options options = new UiAutomator2Options();
+        capabilities.asMap().forEach(options::setCapability);
+        logger.info("Create Android driver with local service and caps");
+        return new AndroidDriver(service, options);
     }
 }
