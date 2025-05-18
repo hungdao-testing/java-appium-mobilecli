@@ -60,11 +60,7 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
