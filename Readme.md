@@ -14,6 +14,7 @@ The automation framework is using:
 - TestNg: test unit framework
 - Appium: Mobile UI (`XCUITest and UiAutomator2` drivers) attaching `element-wait` plugin.
 - Allure: Reporter (must install Allure CLI in your computer to generate report)
+- BrowserStack SDK
 
 The test script is following `Page-Object-Model`
 
@@ -23,23 +24,23 @@ The list of test cases are placed in `xml` file under `test/source/*.xml`.
 
 #### Run test-suite at appium-remote server
 
-##### Precondition: 
 
-- Install appium server along with Android and IOS drivers
-
-- Then `element-wait` plugin
 
 ##### Steps:
 
-At remote server (as the `address` in file `src/test/resources/appium.server.json`), open CLI and start appium 
+running command: 
 
-```jshelllanguage
-appium server --use-plugins=element-wait -p 5024 -a 0.0.0.0
-```
+- Android platform
 
-At client server (or your computer): 
+`mvn clean test -Dplatform=android -Dtarget=bs -Dsuite="mobile-testng"`
 
-running command: `mvn clean test -Dsuite="mobile-testng"`
+
+- IOS platform
+
+`mvn clean test -Dplatform=ios -Dtarget=bs -Dsuite="mobile-testng"`
+
+
+Notes: `-Dtarget=bs` guides framework to trigger `BsAppiumService` class to build appium service
 
 ## 4. Report
 
@@ -54,5 +55,4 @@ At root folder, running 2 commands:
 ```
 
 ## 5. Issues:
-If the `android.cap` and `ios.cap` specifies `systemPort` and `wdaLocalPort` , the script would be failed
-=> On the way to investigate
+
