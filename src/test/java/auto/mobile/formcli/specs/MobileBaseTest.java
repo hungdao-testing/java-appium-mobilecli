@@ -3,24 +3,24 @@ package auto.mobile.formcli.specs;
 
 import auto.mobile.formcli.config.driver.FwDesiredCapsBuilder;
 import auto.mobile.formcli.config.driver.FwDriverManager;
+import auto.mobile.formcli.config.target.BsAppiumService;
+import auto.mobile.formcli.config.target.LocalAppiumService;
 import auto.mobile.formcli.constants.MobilePlatform;
 import auto.mobile.formcli.pojo.AppiumServerPojo;
 import auto.mobile.formcli.pojo.MobileCapPojo;
 import auto.mobile.formcli.utils.JsonConverter;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
-import io.appium.java_client.service.local.AppiumServiceBuilder;
-import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
-import java.io.File;
 import java.util.Objects;
+import java.util.Optional;
 
 public class MobileBaseTest {
 
-
+    private static String TARGET_RUNNER;
     private static final String APPIUM_PLUGIN_ELEMENT_WAIT = "element-wait";
     private static final ThreadLocal<AppiumDriverLocalService> appiumServiceThread =
             new ThreadLocal<>();
@@ -29,9 +29,12 @@ public class MobileBaseTest {
     @BeforeTest(description = "Start appium server")
     @Parameters({"platform"})
     public void startAppiumServer(String platform) {
-        logger.info("Setup appium server for platform {}", platform);
+
+        setTargetRunner();
+        logger.info("Getting target runner on local or cloud: {}", TARGET_RUNNER);
+
         setAppiumService(platform);
-//        appiumServiceThread.get().start();
+        logger.info("Setup appium server for platform {}", platform);
     }
 
     @AfterTest(description = "Stop appium driver and server")
@@ -59,14 +62,15 @@ public class MobileBaseTest {
 
     private void setAppiumService(String platform) {
         AppiumServerPojo appiumServerConfig = setUpAppiumServerInfo();
-        appiumServiceThread.set(
-                new AppiumServiceBuilder()
-                        .withCapabilities(setUpCapability(platform))
-//                        .withArgument(GeneralServerFlag.USE_PLUGINS, APPIUM_PLUGIN_ELEMENT_WAIT)
-                        .usingPort(Integer.parseInt(appiumServerConfig.getPort()))
-                        .withIPAddress(appiumServerConfig.getAddress())
-                        .withLogFile(new File(appiumServerConfig.getLogPath()))
-                        .build());
+        if (TARGET_RUNNER.equalsIgnoreCase("local")) {
+            appiumServiceThread.set(
+                    LocalAppiumService.buildAppiumService(appiumServerConfig, setUpCapability(platform)));
+        } else {
+
+            appiumServiceThread.set(
+                    BsAppiumService.buildAppiumService(setUpCapability(platform)));
+        }
+
     }
 
     private DesiredCapabilities setUpCapability(String platform) {
@@ -81,5 +85,11 @@ public class MobileBaseTest {
         return JsonConverter.parseJsonAs(
                 "src/test/resources/appium.server.json",
                 AppiumServerPojo.class);
+    }
+
+    private void setTargetRunner() {
+        Optional.ofNullable(System.getProperty("target")).ifPresentOrElse(target -> TARGET_RUNNER = target, () -> {
+            TARGET_RUNNER = "local";
+        });
     }
 }
